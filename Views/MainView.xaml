@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaAppDemo.Views.MainView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1B1A28">
+    <Grid RowDefinitions="Auto,*" RowSpacing="40" Padding="30">
+         <Label Text="IMAX" TextColor="White" FontSize="40" FontAttributes="Bold"
+                HorizontalOptions="Center"/>
+        <StackLayout Grid.Row="1" Spacing="15">
+            <Label Text="Your Tickets" TextColor="White"
+                   FontSize="20" FontAttributes="Bold"/>
+            <CollectionView SelectionMode="Single"
+                            ItemsSource="{Binding Tickets}"
+                            SelectedItem="{Binding SelectedTicket}"
+                            SelectionChanged="CollectionView_SelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"
+                                     VerticalItemSpacing="20"
+                                     HorizontalItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No ticket found." TextColor="Gray"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="10">
+                            <Image Source="{Binding Image}" Aspect="AspectFill"
+                                   HeightRequest="235"
+                                   HorizontalOptions="FillAndExpand"/>
+                            <Label Text="{Binding MovieTitle}" TextColor="White"
+                                   FontSize="14"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Grid>
+</ContentPage>

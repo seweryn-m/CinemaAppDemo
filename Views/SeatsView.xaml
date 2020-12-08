@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             x:Class="CinemaAppDemo.Views.SeatsView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1B1A28">
+    <ScrollView>
+        <Grid RowDefinitions="Auto, Auto, *" Padding="30" RowSpacing="30">
+            <StackLayout Orientation="Horizontal" Margin="0,20"
+                         VerticalOptions="Start" Spacing="20">
+                <Image Source="{Binding SelectedTicket.Image}" Aspect="AspectFill"
+                       HeightRequest="90" WidthRequest="70"
+                       HorizontalOptions="Start"/>
+                <StackLayout>
+                    <Label Text="{Binding SelectedTicket.MovieTitle}"
+                           TextColor="White" FontSize="20"/>
+                    <StackLayout Orientation="Horizontal" Spacing="15">
+                        <Image Source="calendar" HeightRequest="15"
+                               WidthRequest="15"/>
+                        <Label Text="{Binding SelectedTicket.ShowingDate, StringFormat='{0:dd.MM.yyyy}'}"
+                               TextColor="#8989CB" FontSize="12" VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="time" WidthRequest="15" HeightRequest="15"/>
+                        <Label Text="{Binding SelectedTicket.ShowingDate, StringFormat='{0:h.mm tt}'}"
+                               TextColor="#8989CB" FontSize="12" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <BoxView BackgroundColor="White" Opacity="0.2" HeightRequest="1"
+                     VerticalOptions="End"/>
+            <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="1" Spacing="30">
+                <Path Stroke="#00b7fc" Aspect="Fill" StrokeThickness="5" HeightRequest="30"
+                      Data="M0,0S74.587-33.916,148.078-33.916,293.962,0,293.962,0"/>
+                <skia:SKCanvasView x:Name="canvasView" HeightRequest="250"
+                                   WidthRequest="350" HorizontalOptions="Center"
+                                   PaintSurface="canvasView_PaintSurface"/>
+                <BoxView BackgroundColor="White" Opacity="0.2" HeightRequest="1"
+                         VerticalOptions="End"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center"
+                             Spacing="30">
+                    <StackLayout Orientation="Horizontal">
+                        <Rectangle Stroke="#353551" StrokeThickness="1"
+                                   HeightRequest="15" WidthRequest="15"
+                                   VerticalOptions="Center"/>
+                        <Label Text="Available" TextColor="White" FontSize="14"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Rectangle Stroke="#353551" StrokeThickness="1"
+                                   HeightRequest="15" WidthRequest="15"
+                                   VerticalOptions="Center"/>
+                        <Label Text="Reserved" TextColor="White" FontSize="14"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Rectangle Stroke="#9747FF" StrokeThickness="1"
+                                   HeightRequest="15" WidthRequest="15"
+                                   VerticalOptions="Center"/>
+                        <Label Text="Your seats" TextColor="White" FontSize="14"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <Button Grid.Row="2" Text="Buy more tickets" TextColor="White"
+                    WidthRequest="220" HeightRequest="40"
+                    CornerRadius="20" BackgroundColor="#9747FF"
+                    HorizontalOptions="Center" VerticalOptions="End"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>
